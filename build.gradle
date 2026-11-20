@@ -1,0 +1,57 @@
+plugins {
+    id 'fabric-loom' version '1.13.3'
+    id 'maven-publish'
+}
+
+version = mod_version
+group = mod_group_id
+base { archivesName = mod_id }
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    withSourcesJar()
+}
+
+repositories {
+    maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = 'https://libraries.minecraft.net/' }
+    maven { url = 'https://maven.aliyun.com/repository/public/' }
+    maven { url = 'https://bmclapi2.bangbang93.com/maven/' }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:1.21.11"
+    mappings "net.fabricmc:yarn:1.21.11+build.6:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.20.1"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.141.6+1.21.11"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+    manifest {
+        attributes(
+                'Implementation-Title'  : 'capedisplay',
+                'Implementation-Version': project.version,
+                'Implementation-Vendor' : project.property('mod_authors')
+        )
+    }
+}
+
+// 开发期专用：让 dev 客户端用固定用户名、并直接进验收环境（不影响发布出去的 jar）
+// 切换到 offline 形态：直连本机离线模式服务端（online-mode=false），验证离线服场景
+// 开发期验收用的 loom runs 块已在发布版注释掉

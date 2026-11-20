@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "capedisplay",
+  "version": "${version}",
+  "name": "披风显示Mod",
+  "description": "显示服务器离线玩家的披风：优先 Mojang 官方披风，其次皮肤站（LittleSkin / Blessing Skin）披风。",
+  "authors": [
+    "ghosttune"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.ghosttune.capedisplay.CapeDisplayMod"
+    ]
+  },
+  "mixins": [
+    "capedisplay.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

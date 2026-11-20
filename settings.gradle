@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        // Local pre-seeded repo. maven.minecraftforge.net is unreachable on some networks,
+        // so artifacts needed at configuration time live here.
+        maven { url = uri('../.maven-local') }
+        maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://bmclapi2.bangbang93.com/maven/' }
+        maven { url = 'https://maven.aliyun.com/repository/public/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+// ForgeGradle registers runServer/runClient late; configure-on-demand hides them.
+gradle.startParameter.configureOnDemand = false
+
+rootProject.name = 'capedisplay'
