@@ -151,4 +151,4 @@ Minecraft **1.21.11** · **Fabric** · **仅客户端** · 作者 **ghosttune**
 ./gradlew runClient    # 开发客户端
 ```
 
-`build.gradle` 末尾的 `loom.runs.client.programArgs`（`--username Ghosttune`、`--quickPlaySingleplayer capedev`）是验收自动化用的，只影响 dev 运行配置，不影响发布 jar。发布版可以删掉。
+`build.gradle` 末尾的 `loom.runs.client.programArgs`（`--username Ghosttune`、`--quickPlaySingleplayer capedev`）是验收自动化用的，只影响 dev 运行配置，awa，头次发布可能不太熟练awa
